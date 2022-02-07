@@ -4,9 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,10 +22,10 @@ public class JsonTest  {
         while (scanner.hasNext()) {
            arrayList.add(new Person(scanner.next(), scanner.nextInt()));
         }
-
+        Writer file = new FileWriter("src/exerciseJson/person.json");
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(arrayList);
-        System.out.println(json);
+        gson.toJson(arrayList, file);
+        file.close();
     }
 
     public static void main(String[] args) throws IOException {

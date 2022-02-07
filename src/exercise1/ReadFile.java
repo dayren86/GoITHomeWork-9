@@ -10,20 +10,10 @@ public class ReadFile {
 
         FileReader fr = new FileReader("src/exercise1/file.txt");
         BufferedReader br = new BufferedReader(fr);
-        String[] arrayLine = new String[20];
         String line;
-        int index = 0;
-        while((line = br.readLine()) != null){
-            arrayLine[index] = line;
-            index++;
-        }
-        for (int i = 0; i < arrayLine.length; i++) {
-            char[] chars = arrayLine[i].toCharArray();
-            for (int j = 0; j < chars.length; j++) {
-                if (chars[3] == '-' && chars[7] == '-' || chars[0] == '(' && chars[4] ==')') {
-                    System.out.println(arrayLine[i]);
-                    break;
-                }
+        while ((line = br.readLine()) != null) {
+            if (line.matches("^[(]\\d{3}[)][\\s]\\d{3}[-]\\d{4}$|^\\d{3}[-]\\d{3}[-]\\d{4}$")) {
+                System.out.println("line = " + line);
             }
         }
     }
